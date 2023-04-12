@@ -2,15 +2,13 @@ import React from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 
-const MotionLink = motion('a')
-
 const Logo: React.FC = () => {
     const linkClasses =
-        'w-16 h-16 bg-dark flex items-center justify-center rounded-full text-2xl font-bold text-white'
+        'w-16 h-16 bg-dark flex items-center justify-center rounded-full text-2xl font-bold text-white border border-solid border-transparent dark:border-light'
     return (
         <div className={'flex items-center justify-center mt-2'}>
             <Link href={'/'} legacyBehavior passHref>
-                <MotionLink
+                <motion.a
                     className={linkClasses}
                     whileHover={{
                         backgroundColor: [
@@ -28,7 +26,7 @@ const Logo: React.FC = () => {
                     }}
                 >
                     YT
-                </MotionLink>
+                </motion.a>
             </Link>
         </div>
     )

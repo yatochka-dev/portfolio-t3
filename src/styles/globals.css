@@ -7,3 +7,13 @@
         @apply px-4 py-2 rounded-md bg-blue-500 text-white;
     }
 }
+
+@layer base {
+    * {
+        @apply transition-colors duration-300 ease-linear;
+    }
+
+    body {
+        @apply overflow-x-hidden;
+    }
+}

@@ -1,24 +1,10 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 
-type ComponentType =
-    | 'h1'
-    | 'h2'
-    | 'h3'
-    | 'h4'
-    | 'h5'
-    | 'h6'
-    | 'p'
-    | 'span'
-    | 'div'
-
 interface AnimatedTextProps {
     text: string
-    component: ComponentType
     className?: string
 }
-
-const WordWrapper = motion('span')
 
 const quoteVariants = {
     initial: {
@@ -47,35 +33,27 @@ const wordVariants = {
     },
 }
 
-const AnimatedText: React.FC<AnimatedTextProps> = ({
-    text,
-    component,
-    className,
-}) => {
-    const Component = component as keyof JSX.IntrinsicElements
-
-    const TextWrapper = motion(Component)
-
+const AnimatedText: React.FC<AnimatedTextProps> = ({ text, className }) => {
     return (
         <div
-            className={`w-full mx-auto py-2 flex items-center justify-center text-center overflow-hidden`}
+            className={`w-full mx-auto py-2 flex items-center justify-center text-center overflow-hidden sm:py-0`}
         >
-            <TextWrapper
-                className={`inline-block w-full text-dark font-bold capitalize text-8xl ${className}`}
+            <motion.h1
+                className={`inline-block w-full text-dark dark:text-light font-bold capitalize text-8xl ${className}`}
                 variants={quoteVariants}
                 initial={'initial'}
                 animate={'animate'}
             >
                 {text.split(' ').map((word, index) => (
-                    <WordWrapper
+                    <motion.span
                         key={`animated-text-${index}-${word}`}
                         className={'inline-block'}
                         variants={wordVariants}
                     >
                         {word}&nbsp;
-                    </WordWrapper>
+                    </motion.span>
                 ))}
-            </TextWrapper>
+            </motion.h1>
         </div>
     )
 }
